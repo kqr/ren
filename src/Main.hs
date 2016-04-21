@@ -22,6 +22,7 @@ data Object
 data AppStatus
     = Running
     | Canceled
+    | Terminated
     | Confirmed FilePath
 
 data AppState = AppState
@@ -61,6 +62,7 @@ rename absolute object = do
     case finalAppState ^. appStatus of
         Running -> error "this should never happen"
         Canceled -> return ()
+        Terminated -> error "keyboard interrupt, terminating..."
         Confirmed newPath ->
             case object of
                 File -> renameFile absolute newPath
@@ -99,6 +101,8 @@ draw state =
 eventHandler :: AppState -> Event -> EventM (Next AppState)
 eventHandler state ev =
     case ev of
+        EvKey (KChar 'c') [MCtrl] ->
+            halt (state & appStatus .~ Terminated)
         EvKey KEsc [] ->
             halt (state & appStatus .~ Canceled)
         EvKey KEnter [] ->

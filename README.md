@@ -54,3 +54,9 @@ $ cd ren
 $ stack install
 ```
 
+
+Todo
+----
+
+* Try to eliminate more race conditions?
+
