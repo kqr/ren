@@ -8,41 +8,27 @@ on Linuxy Unixy systems.
 Motivation and Usage
 --------------------
 
-Imagine you have a couple of files a fair bit down in the directory tree, like
-in this screenshot.
+Imagine you have a couple of files a fair bit down in the directory tree.
+Finally! Finished up all those TPS reports and even included the cover shee...
+Damn it! You misspelled the file name. Boss will have your head for this!
 
-![ls corporate/bullshit/](screenshots/scrot_20160421040726.png)
+No worries, you'll just type this mile long `mv` command where you have to type the
+path twice because the relevant directory is not my working directory. You do this
+because you're a glutton for punishment.
 
-Finally! Finished up all those TPS reports and even included the cover she...
-Damn it! I misspelled the file name. Boss will have my head for this!
+But wait! You have this new fancy `ren` tool installed. Let's give it a shot.
 
-No worries, I'll just type this mile long `mv` command where I have to type the
-path twice because the relevant directory is not my working directory. I do this
-because I'm a glutton for punishment.
+![animation of ren](screenshots/ren-0.2.0.gif)
 
-![looong mv command](screenshots/scrot_20160421040743.png)
+The main window shows you the old file name as well as the new one. If the new
+path is in red, it means there's a file name collision and `ren` will not allow
+you to overwrite an existing file. Change the file name (or path!) to your
+hearts' content. If you want to cancel, press escape. When you are done, press
+return to confirm.
 
-But wait! I have this new fancy `ren` tool installed. Let's give it a shot.
-
-![short ren command](screenshots/scrot_20160421040753.png)
-
-![ren dialog](screenshots/scrot_20160421040757.png)
-
-Here's the main window. The file path is in red, which indicates a file with
-that name already exists. (Obviously, in this case, since we've just started
-the program, so the original file name is still filled in.) Currently, `ren`
-will not allow you to overwrite an existing file while renaming a file. Press
-escape to cancel.
-
-![ren renaming in progress](screenshots/scrot_20160421040801.png)
-
-Now I've corrected the name, and it's green to show me that there's no name
-conflict. Press return to confirm.
-
-![successfully renamed!](screenshots/scrot_20160421040810.png)
-
-We're out of `ren` again, and as you can see, the file has been renamed. If you
-give multiple files as arguments to ren, it will prompt you for each file.
+If you give multiple files as arguments to `ren`, it will prompt you for each
+one. If you gave it a million files by accident, and you want to back out,
+ctrl-c terminates the program.
 
 
 Building
@@ -54,9 +40,4 @@ $ cd ren
 $ stack install
 ```
 
-
-Todo
-----
-
-* Try to eliminate more race conditions?
 
