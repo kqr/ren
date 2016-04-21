@@ -18,7 +18,7 @@ because you're a glutton for punishment.
 
 But wait! You have this new fancy `ren` tool installed. Let's give it a shot.
 
-![animation of ren](screenshots/ren-0.2.0.gif)
+![animation of ren](screenshots/ren_0.2.0.gif)
 
 The main window shows you the old file name as well as the new one. If the new
 path is in red, it means there's a file name collision and `ren` will not allow
@@ -37,7 +37,9 @@ Building
 ```
 $ git clone git@github.com:kqr/ren.git
 $ cd ren
-$ stack install
+$ stack setup && stack install
 ```
+
+`stack` can be installed through the package manager on your system.
 
 
