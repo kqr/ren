@@ -20,6 +20,7 @@ executable ren
   build-depends:       base
                      , transformers
                      , directory
+                     , system-filepath
                      , brick
                      , vty
                      , text-zipper

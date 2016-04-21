@@ -13,9 +13,6 @@ extra-deps: []
 # Override default flag values for local packages and extra-deps
 flags: {}
 
-# Extra package databases containing global packages
-extra-package-dbs: []
-
 # Control whether we use the GHC we find on the path
 # system-ghc: true
 
@@ -24,7 +21,7 @@ extra-package-dbs: []
 # require-stack-version: >= 1.0.0
 
 # Override the architecture used by stack, especially useful on Windows
-# arch: i386
+arch: i386
 # arch: x86_64
 
 # Extra directories used by stack for building

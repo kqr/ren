@@ -11,6 +11,7 @@ import Graphics.Vty.Input.Events
 import Lens.Micro
 import Lens.Micro.Extras
 import Lens.Micro.TH
+import Completion
 
 
 data Object
@@ -29,6 +30,7 @@ data AppState = AppState
     { _appEditor :: Editor
     , _appStatus :: AppStatus
     , _appWarning :: Bool
+    , _oldPath :: FilePath
     }
 $(makeLenses ''AppState)
 
@@ -76,6 +78,7 @@ run path = do
         { _appEditor = editor "editor" (str . concat) (Just 1) path
         , _appStatus = Running
         , _appWarning = True
+        , _oldPath = path
         }
 
 
@@ -95,7 +98,11 @@ initApp state =
 
 draw :: AppState -> [Widget]
 draw state =
-    [renderEditor (state ^. appEditor)]
+    [
+    str ("Old name: " ++ state ^. oldPath)
+    <=>
+    (str "New name: " <+> renderEditor (state ^. appEditor))
+    ]
 
 
 eventHandler :: AppState -> Event -> EventM (Next AppState)
@@ -105,6 +112,10 @@ eventHandler state ev =
             halt (state & appStatus .~ Terminated)
         EvKey KEsc [] ->
             halt (state & appStatus .~ Canceled)
+        EvKey (KChar '\t') [] -> do
+            next <- liftIO (setPath state <$> completeFile (getPath state))
+            object <- liftIO (objectAt (getPath next))
+            continue (next & appWarning .~ (object /= DoesNotExist))
         EvKey KEnter [] ->
             if state ^. appWarning then
                 continue state
@@ -118,4 +129,11 @@ eventHandler state ev =
         getPath :: AppState -> FilePath
         getPath state =
             concat (getEditContents (state ^. appEditor))
+
+        setPath :: AppState -> FilePath -> AppState
+        setPath state path =
+            state
+                & appEditor
+                . editContentsL
+                .~ gotoEOL (stringZipper [path] (Just 1))
 
