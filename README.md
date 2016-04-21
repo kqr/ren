@@ -16,15 +16,15 @@ in this screenshot.
 Finally! Finished up all those TPS reports and even included the cover she...
 Damn it! I misspelled the file name. Boss will have my head for this!
 
-![looong mv command](screenshots/scrot_20160421040743.png)
-
 No worries, I'll just type this mile long `mv` command where I have to type the
 path twice because the relevant directory is not my working directory. I do this
 because I'm a glutton for punishment.
 
-![short ren command](screenshots/scrot_20160421040753.png)
+![looong mv command](screenshots/scrot_20160421040743.png)
 
 But wait! I have this new fancy `ren` tool installed. Let's give it a shot.
+
+![short ren command](screenshots/scrot_20160421040753.png)
 
 ![ren dialog](screenshots/scrot_20160421040757.png)
 
